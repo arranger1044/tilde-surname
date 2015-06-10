@@ -1,0 +1,126 @@
+<!doctype html>
+<html>
+  <head>
+  {% block starthead %}{% endblock starthead %}
+  <meta charset="{{ resource.meta.charset }}">
+  <meta http-equiv="X-UA-Compatible" content="{{ resource.meta.compatibility }}">
+  
+  <title>{% block title %}{{ resource.meta.title }}{% endblock %}</title>
+  <meta name="description" content="{{ resource.meta.description }}">
+  <meta name="author" content="{{ resource.meta.author }}">
+  
+  <!--  Mobile viewport optimized: j.mp/bplateviewport -->
+  <meta name="viewport" content="{{ resource.meta.viewport }}">
+  
+  {% block favicons %}
+  <!-- Place favicon.ico & apple-touch-icon.png
+        in the root of your domain and delete these references -->
+  <link rel="shortcut icon" href="{{ media_url('favicon.ico') }}">
+  <link rel="selfie-non-multiplicanda" href="{{ media_url('selfie-non-multiplicanda.png') }}">
+  {% endblock favicons %}
+  
+  {% block css %}
+    <!--<link rel="stylesheet" href="https://github.com/themes/minimal/stylesheets/styles.css">-->
+    <link rel="stylesheet" href="{{ media_url('js/styles.css') }}">
+    
+    <!--<script src="https://github.com/themes/minimal/javascripts/scale.fix.js"></script>-->
+    <script src="{{ media_url('js/scale.fix.js') }}"></script>
+  {% endblock css %}
+  </head>
+  
+  <body id="{{ resource.meta.id if resource.meta.id else resource.slug }}">
+  {% block content %}
+    <div class="wrapper">
+      {% block wrapper %}
+      <header>
+        {% block header %}
+        <h1><a href="{{ content_url('') }}">av</a></h1>
+        <p><small>est modus ponens in rebus</small></p>
+	
+	{% endblock header %}
+	{% block nav %}
+	<br>
+        <!--
+	<p class="view"><a href="{{ content_url('research/index.html') }}">research</a></p>
+        <p class="view"><a href="{{ content_url('teaching.html') }}">teaching</a></p>
+        <p class="view"><a href="{{ content_url('code/index.html')}}">code</a></p>
+	-->
+	<h3><a href="{{ content_url('research/index.html') }}">research</a></h3>
+        <h3><a href="{{ content_url('teaching/index.html') }}">teaching</a></h3>
+        <h3><a href="{{ content_url('code/index.html')}}">code</a></h3>
+        {% if page.repository_url %}
+          <h3>Project Info</h3>
+          <ul>
+            {% if page.zip_url %}
+            <li><a href="{{ page.zip_url }}">Download <strong>ZIP File</strong></a></li>
+            {% endif %}
+            {% if page.tar_url %}
+              <li><a href="{{ page.tar_url }}">Download <strong>TAR Ball</strong></a></li>
+            {% endif %}
+            {% if page.gem_url %}
+              <li><a href="{{ page.gem_url }}">Download <strong>Rubygem</strong></a></li>
+            {% endif %}
+            {% if page.issue_url %}
+              <li><a href="{{ page.issue_url }}">Report<strong>An Issue</strong></a></li>
+            {% endif %}
+            {% if page.repository_url %}
+              <li><a href="{{ page.repository_url }}">Fork On <strong>GitHub</strong></a></li>
+            {% endif %}
+          </ul>
+        {% endif %}
+	{% endblock nav %}
+	  
+	{% block media %}
+	<p id='desc' class='.ext-link'>PhD student in machine learning
+          @<a href=''>uniba</a>.<a href=''>dib</a>.<a href='http://lacam.di.uniba.it/'>lacam</a>.
+	  <br/>
+	  Contact me at <span style="unicode-bidi:bidi-override; direction: rtl;">
+            ti.abinu<span style="display:none">ilMaLe</span>@iragrev.oinotna
+        </span></p>  
+        <h4>other places</h4>
+        <p class="ext-link"><a href="http://github.com/arranger1044" target="tab">github</a>
+    {% endblock media %}
+      </header>
+      <section id="main">
+	{% block main %}
+        {{ content }}
+	{% endblock main %}
+      </section>
+      {% block footer %}
+      <footer>
+	<p><small>generated with <a href="http://hyde.github.io/">Hyde</a> &mdash;
+	    on a template adapted from <a href="http://www.astro.washington.edu/users/vanderplas/">Jake VanderPlas</a>.</small></p>
+      </footer>
+      {% endblock footer %}
+    {% endblock wrapper %}
+    </div>
+    {% endblock content %}
+    
+    {% block js %}
+    <script type="text/javascript">
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4eb74c9f613f5d3567000004');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
+    </script>
+    {% block jquery %}
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="js/libs/jquery-1.6.2.min.js"><\/script>')</script>
+    <!--[if !IE]><script>fixScale(document);</script><!--<![endif]-->
+    {% endblock jquery %}
+
+    {% block analytics %}
+							    {% include "analytics.j2" %}
+    {% endblock analytics %}
+
+    {% endblock js %}
+
+  </body>
+</html>

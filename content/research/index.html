@@ -1,0 +1,72 @@
+---
+extends: minimal.j2
+default_block: main
+title: publications
+description: brief list of publications
+---
+
+{% filter markdown -%}
+# research
+
+I started a PhD in Computer Science and Mathematics under the
+supervision
+of [Prof. Floriana
+Esposito](http://lacam.di.uniba.it:8000/people/FlorianaEsposito.html)
+and [Dr. Nicola Di Mauro](http://www.di.uniba.it/~ndm/) on November
+2014.  
+Being Machine Learning my main research area, I am part of the
+  [LACAM](http://lacam.di.uniba.it/) laboratory, ML group.
+
+
+## research interests
+_Probabilistic Graphical Models_ (PGMs) and in particular _Tractable
+Models_ (TPGMs) and _structure learning_ algorithms. 
+_Representation and Deep Learning_.
+
+
+
+
+
+{%- endfilter %}
+
+{% set details = ['pdf', 'bibtex', 'code', 'supplemental'] %}
+
+<h2>publications</h2>
+<div class='min-bottom-margin'>A brief list of what I wrote.</div>
+<!--<hr/>-->
+<!-- div>a{{site}}</div> -->
+<!-- <div>a{{resource.meta.__dict__}}</div> -->
+{% for res in resource.node['resources']|sort(attribute='meta.created')|reverse %}
+{% if res.meta.title != resource.meta.title %}
+   <div class='article'>
+   <div class='article-authors'><small>{{res.meta.authors}}</small></div>
+   <h3 class='article-title'>{{res.meta.title}}</h3>
+   {% if res.meta.conf %}
+      <div class='article-conf'>{{res.meta.conf}}</div>
+   {% elif res.meta.jou %}   
+      <div class='article-jou'>{{res.meta.jou}}</div>
+   {% endif %}
+   <p> {{res.meta.description}}
+   {% set show_details = [] %}
+     {% for d in details %}
+       {% if d in res.meta.__dict__  %}
+         {% do show_details.append(d) %}
+       {% endif %}
+     {% endfor %}
+     {% if show_details %}
+     [{% for d in show_details %}
+         <a href="{{res.meta.__dict__[d]}}">{{d}}</a>
+	 {% if loop.index < show_details|length %}
+	 | 
+	{% endif %}
+     {% endfor %}]
+  {% endif %}
+  </p>
+  </div>
+  <!--<hr/>-->
+  {% endif %}
+  {% endfor %}
+
+  
+
+  

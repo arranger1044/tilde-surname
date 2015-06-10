@@ -1,0 +1,41 @@
+---
+extends: minimal.j2
+default_block: main
+title: teaching
+description: courses I taught, am teaching
+---
+
+<h1>teaching</h1>
+<p>A list of presentations, lectures and the courses I taught or am teaching during this PhD.</p>
+
+
+{% set details = ['github'] %}
+
+{% for res in resource.node['resources']|sort(attribute='meta.created')|reverse %}
+{% if res.meta.title != resource.meta.title %}
+   <div class='aa'><small>{{res.meta.aa}}</small></div>
+   <h2 class='course-title'><a href="{{res.url}}">{{res.meta.title}}</a></h2>
+   <p> {{res.meta.description}}
+   {% set show_details = [] %}
+     {% for d in details %}
+       {% if d in res.meta.__dict__  %}
+         {% do show_details.append(d) %}
+       {% endif %}
+     {% endfor %}
+     {% if show_details %}
+     [{% for d in show_details %}
+         <a href="{{res.meta.__dict__[d]}}">{{d}}</a>
+	 {% if loop.index < show_details|length %}
+	 | 
+	{% endif %}
+     {% endfor %}]
+  {% endif %}
+  </p>
+  <!--<hr/>-->
+  {% endif %}
+  {% endfor %}
+  
+  
+  
+
+
