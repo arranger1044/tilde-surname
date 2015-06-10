@@ -30,11 +30,11 @@ _Representation and Deep Learning_.
 {%- endfilter %}
 
 {% set details = ['pdf', 'bibtex', 'code', 'supplemental'] %}
+{% set relpaths = ['pdf', 'supplemental']%}
 
 <h2>publications</h2>
 <div class='min-bottom-margin'>A brief list of what I wrote.</div>
 <!--<hr/>-->
-<!-- div>a{{site}}</div> -->
 <!-- <div>a{{resource.meta.__dict__}}</div> -->
 {% for res in resource.node['resources']|sort(attribute='meta.created')|reverse %}
 {% if res.meta.title != resource.meta.title %}
@@ -55,10 +55,14 @@ _Representation and Deep Learning_.
      {% endfor %}
      {% if show_details %}
      [{% for d in show_details %}
-         <a href="{{res.meta.__dict__[d]}}">{{d}}</a>
-	 {% if loop.index < show_details|length %}
-	 | 
-	{% endif %}
+         {% if d in relpaths %}
+              <a href="{{site.config.base_url}}{{res.meta.__dict__[d]}}">{{d}}</a>
+	 {% else %}
+              <a href="{{res.meta.__dict__[d]}}">{{d}}</a>
+         {% endif %}        
+       {% if loop.index < show_details|length %}
+            |
+       {% endif %}
      {% endfor %}]
   {% endif %}
   </p>

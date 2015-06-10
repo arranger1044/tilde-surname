@@ -1,13 +1,13 @@
 extends: site.yaml
 
 mode: production
-media_url: /users/rano/media
-base_url: /users/rano
-deploy_root: deploy_production
+media_url: /~vergari/media
+base_url: /~vergari/
+deploy_root: deploy-prod
 
 publisher:
-    ssh:
-        type: hyde.ext.publishers.ssh.SSH
-        username: rano
-        server: put.url.here
+    pyfs:
+        type: hyde.ext.publishers.pyfs.PyFS
+        username: vergari
+        url: ftp://193.204.187.10:22
         target: /

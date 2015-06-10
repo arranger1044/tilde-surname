@@ -13,8 +13,9 @@ description: courses I taught, am teaching
 
 {% for res in resource.node['resources']|sort(attribute='meta.created')|reverse %}
 {% if res.meta.title != resource.meta.title %}
+   {% set ur = site.config.base_url~res.url %}
    <div class='aa'><small>{{res.meta.aa}}</small></div>
-   <h2 class='course-title'><a href="{{res.url}}">{{res.meta.title}}</a></h2>
+   <h2 class='course-title'><a href="{{ur.replace('//', '/')}}">{{res.meta.title}}</a></h2>
    <p> {{res.meta.description}}
    {% set show_details = [] %}
      {% for d in details %}
