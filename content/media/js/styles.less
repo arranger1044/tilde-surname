@@ -222,7 +222,7 @@ header p small{
 
 strong {
   color:@dark-gray;
-  font-weight:700;
+  font-weight:@bold;
 }
 
 header ul li + li {
@@ -275,6 +275,14 @@ section h2 {
 
 div.exempla{
     margin-left: 100px;
+}
+
+div.bibtex {
+    display:none;
+}
+
+div.abstract {
+   display:none;
 }
 
 section#main figure {
@@ -339,14 +347,17 @@ footer p {
 }
 
 .article-authors {
+  margin-bottom:1px;
 }
 
 .article-title {
     margin:0px;
+    margin-bottom:3px;
 }
 
 .article-conf {
     font-weight: @bold;
+    margin-bottom: 3px;
 }
 
 .overlay-bg {

@@ -11,7 +11,7 @@ description: brief list of projects
 <p>A short list of some projects I made or contributed to.</p>
 <!--<hr/>-->
 
-{% for res in resource.node['resources']|sort(attribute='meta.created') %}
+{% for res in resource.node['resources']|sort(attribute='meta.created')|reverse %}
 {% if res.meta.title != resource.meta.title %}
 {% set ur = site.config.base_url~res.url %}
 <h2><a href="{{ur.replace('//', '/')}}">{{res.meta.title}}</a></h2>

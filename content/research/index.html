@@ -19,9 +19,9 @@ Being Machine Learning my main research area, I am part of the
 
 
 ## research interests
-_Probabilistic Graphical Models_ (PGMs) and in particular _Tractable
+_**Probabilistic Graphical Models**_ (PGMs) and in particular _Tractable
 Models_ (TPGMs) and _structure learning_ algorithms. 
-_Representation and Deep Learning_.
+_**Representation and Deep Learning**_.
 
 
 
@@ -31,6 +31,7 @@ _Representation and Deep Learning_.
 
 {% set details = ['pdf', 'bibtex', 'code', 'supplemental'] %}
 {% set relpaths = ['pdf', 'supplemental']%}
+{% set showmore = ['bibtex', 'abstract']%}
 
 <h2>publications</h2>
 <div class='min-bottom-margin'>A brief list of what I wrote.</div>
@@ -56,21 +57,21 @@ _Representation and Deep Learning_.
      {% if show_details %}
      [{% for d in show_details %}
          {% if d in relpaths %}
-              <a href="{{site.config.base_url}}{{res.meta.__dict__[d]}}">{{d}}</a>
-	 {% else %}
+             <a href="{{site.config.base_url}}{{res.meta.__dict__[d]}}">{{d}}</a>
+         {% elif d in showmore %}
+             <a href="#" class="{{d}}">{{d}}</a>
+         {% else %}
               <a href="{{res.meta.__dict__[d]}}">{{d}}</a>
          {% endif %}        
-       {% if loop.index < show_details|length %}
-            |
-       {% endif %}
+	 {% if loop.index < show_details|length %} |
+	 {% endif %}
      {% endfor %}]
-  {% endif %}
-  </p>
+     {% endif %}
+   </p>
+   <div class="bibtex" ><pre><code>{{res.meta.__dict__['bibtex']}}</code></pre></div>
+   <div class="abstract" >{{res.meta.__dict__['abstract']}}</div> 
   </div>
-  <!--<hr/>-->
-  {% endif %}
-  {% endfor %}
-
-  
+{% endif %}
+{% endfor %}
 
   
