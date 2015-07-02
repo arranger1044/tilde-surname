@@ -12,9 +12,11 @@
 @extra-bold: 900;
 
 @background-index: -10;
+@foreground-index: 10;
 
 body {
-  padding:100px;
+  /*padding:100px;*/
+  margin: 100px;
   font:14px/1.5 'Open Sans', "Helvetica Neue", Helvetica, Arial, sans-serif;
   color: @gray;
   font-weight:@light;
@@ -248,6 +250,7 @@ section {
   width:75%;
   float:right;
   padding-bottom:50px;
+  z-index: @foreground-index;
 }
 
 .min-bottom-margin{
